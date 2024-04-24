@@ -1,0 +1,87 @@
+{% extends 'Adminbase.html.twig' %}
+
+{% block title %}New Demandecheque{% endblock %}
+
+{% block body %}
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">Modifier chèque</div>
+                            <hr>
+                            {{ form_start(form,{ 'attr': {'novalidate': 'novalidate'} }) }}
+                            <div style="color: red">
+                                {{ form_errors(form.montant,{ 'attr': {'class': 'text-danger'} }) }}
+                                {{ form_errors(form.numero_de_cheque,{ 'attr': {'class': 'text-danger'} }) }}
+
+                            </div>
+                            <div class="form-group">
+
+                                <label for="input-1">Numero de chèque</label>
+                                {{ form_widget(form.numero_de_cheque, {'attr': {'class': 'form-control','type':'text','placeholder':'numero de cheque'}}) }}
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-3">Montant</label>
+
+                                {{ form_widget(form.montant, {'attr': {'class': 'form-control','type':'number','placeholder':'Entrer le montant'}}) }}
+
+                            </div>
+                            <div class="form-group">
+                                <label for="input-4">Béneficiaire</label>
+                                {{ form_widget(form.beneficiaire, {'attr': {'class': 'form-control','type':'text','placeholder':'beneficiaire'}}) }}
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="input-5">emetteur</label>
+                                {{ form_widget(form.emetteur, {'attr': {'class': 'form-control','type':'number','placeholder':'emetteur'}}) }}
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-5">statut</label>
+                                {{ form_widget(form.statut, {'attr': {'class': 'form-control form-control-input'}}) }}
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-5">numero de compte</label>
+                                {{ form_widget(form.numerocompte, {'attr': {'class': 'form-control form-control-input','type':'number','placeholder':'Entrer le raison','rows':'6'}}) }}
+
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Ajouter</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+
+            </div><!--End Row-->
+            <!--start overlay-->
+            <div class="overlay toggle-menu"></div>
+            <!--end overlay-->
+
+        </div>
+        <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+
+
+
+
+
+
+
+
+
+{% endblock %}

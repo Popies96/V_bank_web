@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demandecheque{% endblock %}
+
+{% block h1 %}
+    <h1>Demande cheque</h1>
+
+{% endblock %}
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th style="color: #FFFFFF">Numerocompte</th>
+                <td style="color: #FFFFFF">{{ demandecheque.numerocompte }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Montant_demande</th>
+                <td style="color: #FFFFFF">{{ demandecheque.montantDemande }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Raison</th>
+                <td style="color: #FFFFFF">{{ demandecheque.raison }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Date_demande</th>
+                <td style="color: #FFFFFF">{{ demandecheque.dateDemande|date('d/m/Y') }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Cin</th>
+                <td style="color: #FFFFFF">{{ demandecheque.cin }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Num_telephone</th>
+                <td style="color: #FFFFFF">{{ demandecheque.numTelephone }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Type_cheque</th>
+                <td style="color: #FFFFFF">{{ demandecheque.typeCheque }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Statut_demande</th>
+                <td style="color: #FFFFFF">{{ demandecheque.statutDemande }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    {{ include('demandecheque/_delete_form.html.twig') }}
+{% endblock %}

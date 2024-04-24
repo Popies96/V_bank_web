@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cheque{% endblock %}
+{% block h1 %}
+    <h1>Cheque</h1>
+
+{% endblock %}
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th style="color: #FFFFFF">Numero_de_cheque</th>
+                <td style="color: #FFFFFF">{{ cheque.numeroDeCheque }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Montant</th>
+                <td style="color: #FFFFFF">{{ cheque.montant }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Beneficiaire</th>
+                <td style="color: #FFFFFF">{{ cheque.beneficiaire }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Date_emission</th>
+                <td style="color: #FFFFFF">{{ cheque.dateEmission|date('d/m/Y') }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Emetteur</th>
+                <td style="color: #FFFFFF">{{ cheque.emetteur }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Statut</th>
+                <td style="color: #FFFFFF">{{ cheque.statut }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include('cheque/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'Adminbase.html.twig' %}
+
+{% block title %}Demandecheque{% endblock %}
+
+{% block body %}
+<div class="content-wrapper">
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">Demande de chèque
+                    <div class="card-action">
+                        <div class="dropdown">
+                            <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                                <i class="icon-options"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="javascript:void();">Action</a>
+                                <a class="dropdown-item" href="javascript:void();">Another action</a>
+                                <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush table-borderless">
+                            <tbody>
+                            <tr>
+                                <th>Numerocompte</th>
+                                <td>{{ demandecheque.numerocompte }}</td>
+                            </tr>
+                            <tr>
+                                <th>Montant_demande</th>
+                                <td>{{ demandecheque.montantDemande }}</td>
+                            </tr>
+                            <tr>
+                                <th>Raison</th>
+                                <td>{{ demandecheque.raison }}</td>
+                            </tr>
+                            <tr>
+                                <th>Date_demande</th>
+                                <td>{{ demandecheque.dateDemande ? demandecheque.dateDemande|date('Y-m-d') : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Cin</th>
+                                <td>{{ demandecheque.cin }}</td>
+                            </tr>
+                            <tr>
+                                <th>Num_telephone</th>
+                                <td>{{ demandecheque.numTelephone }}</td>
+                            </tr>
+                            <tr>
+                                <th>Type_cheque</th>
+                                <td>{{ demandecheque.typeCheque }}</td>
+                            </tr>
+                            <tr>
+                                <th>Statut_demande</th>
+                                <td>{{ demandecheque.statutDemande }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    {{ include('demandecheque_admin/_delete_form.html.twig') }}
+
+
+</div>
+
+
+
+
+{% endblock %}

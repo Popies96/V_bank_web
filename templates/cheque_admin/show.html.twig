@@ -1,0 +1,83 @@
+{% extends 'Adminbase.html.twig' %}
+
+{% block title %}Cheque{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+
+
+
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header">Chèque
+                            <div class="card-action">
+                                <div class="dropdown">
+                                    <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                                        <i class="icon-options"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="javascript:void();">Action</a>
+                                        <a class="dropdown-item" href="javascript:void();">Another action</a>
+                                        <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush table-borderless">
+                                <tbody>
+                                <tr>
+                                    <th>Numero_de_cheque</th>
+                                    <td>{{ cheque.numeroDeCheque }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Montant</th>
+                                    <td>{{ cheque.montant }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Beneficiaire</th>
+                                    <td>{{ cheque.beneficiaire }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date_emission</th>
+                                    <td>{{ cheque.dateEmission ? cheque.dateEmission|date('Y-m-d') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Emetteur</th>
+                                    <td>{{ cheque.emetteur }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Statut</th>
+                                    <td>{{ cheque.statut }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ include('cheque_admin/_delete_form.html.twig') }}
+
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demandecheque index{% endblock %}
+                {% block h1 %}
+                    <h1>List des demandes de chèques</h1>
+{% endblock %}
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="color: #FFFFFF">Numerocompte</th>
+                <th style="color: #FFFFFF">Montant_demande</th>
+                <th style="color: #FFFFFF">Raison</th>
+                <th style="color: #FFFFFF">Date_demande</th>
+                <th style="color: #FFFFFF">Cin</th>
+                <th style="color: #FFFFFF">Num_telephone</th>
+                <th style="color: #FFFFFF">Type_cheque</th>
+                <th style="color: #FFFFFF">Statut_demande</th>
+                <th style="color: #FFFFFF">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demandecheque in demandecheques %}
+            <tr>
+                <td style="color: #FFFFFF">{{ demandecheque.numerocompte }}</td>
+                <td style="color: #FFFFFF">{{ demandecheque.montantDemande }}</td>
+                <td style="color: #FFFFFF">{{ demandecheque.raison }}</td>
+                <td style="color: #FFFFFF">{{ demandecheque.dateDemande|date('d/m/Y') }}</td>
+
+                <td style="color: #FFFFFF">{{ demandecheque.cin }}</td>
+                <td style="color: #FFFFFF">{{ demandecheque.numTelephone }}</td>
+                <td style="color: #FFFFFF">{{ demandecheque.typeCheque }}</td>
+                <td style="color: #FFFFFF">{{ demandecheque.statutDemande }}</td>
+                <td style="color: #FFFFFF">
+                    <a href="{{ path('app_demandecheque_show', {'numerocompte': demandecheque.numerocompte}) }}">show</a>
+                    <a href="{{ path('app_demandecheque_edit', {'numerocompte': demandecheque.numerocompte}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn form-control-submit-button" href="{{ path('app_demandecheque_new') }}" >Ajouter</a>
+
+{% endblock %}

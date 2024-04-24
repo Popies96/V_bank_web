@@ -1,0 +1,143 @@
+{% extends 'Adminbase.html.twig' %}
+
+{% block title %}Cheque index{% endblock %}
+
+{% block body %}
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header">Liste des chèques
+                            <div class="card-action">
+                                <div class="dropdown">
+                                    <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="icon-options"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(14px, 19px, 0px);">
+                                        <a class="dropdown-item" href="javascript:void();">Action</a>
+                                        <a class="dropdown-item" href="javascript:void();">Another action</a>
+                                        <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush table-borderless">
+                                <thead>
+                                <tr>
+                                    <th>Numero_de_cheque</th>
+                                    <th>Montant</th>
+                                    <th>Beneficiaire</th>
+                                    <th>Date_emission</th>
+                                    <th>Emetteur</th>
+                                    <th>Statut</th>
+                                    <th>actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cheque in cheques %}
+                                    <tr>
+                                        <td>{{ cheque.numeroDeCheque }}</td>
+                                        <td>{{ cheque.montant }}</td>
+                                        <td>{{ cheque.beneficiaire }}</td>
+                                        <td>{{ cheque.dateEmission ? cheque.dateEmission|date('Y-m-d') : '' }}</td>
+                                        <td>{{ cheque.emetteur }}</td>
+                                        <td>{{ cheque.statut }}</td>
+                                        <td>
+                                            <a href="{{ path('app_cheque_admin_show', {'numero_de_cheque': cheque.numero_de_cheque}) }}">show</a>
+                                            <a href="{{ path('app_cheque_admin_edit', {'numero_de_cheque': cheque.numero_de_cheque}) }}">edit</a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="7">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div>
+                <a  href="{{ path('app_cheque_admin_new') }}">
+                    nouveau chèque
+                </a>
+            </div>
+
+
+            <!--start overlay-->
+            <div class="overlay toggle-menu"></div>
+            <!--end overlay-->
+
+        </div>
+        <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+
+
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+    <!--Start footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="text-center">
+                Copyright © 2018 Dashtreme Admin
+            </div>
+        </div>
+    </footer>
+    <!--End footer-->
+
+    <!--start color switcher-->
+    <div class="right-sidebar">
+        <div class="switcher-icon">
+            <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+        </div>
+        <div class="right-sidebar-content">
+
+            <p class="mb-0">Gaussion Texture</p>
+            <hr>
+
+            <ul class="switcher">
+                <li id="theme1"></li>
+                <li id="theme2"></li>
+                <li id="theme3"></li>
+                <li id="theme4"></li>
+                <li id="theme5"></li>
+                <li id="theme6"></li>
+            </ul>
+
+            <p class="mb-0">Gradient Background</p>
+            <hr>
+
+            <ul class="switcher">
+                <li id="theme7"></li>
+                <li id="theme8"></li>
+                <li id="theme9"></li>
+                <li id="theme10"></li>
+                <li id="theme11"></li>
+                <li id="theme12"></li>
+                <li id="theme13"></li>
+                <li id="theme14"></li>
+                <li id="theme15"></li>
+            </ul>
+
+        </div>
+
+    </div>
+    <!--end color switcher-->
+
+    </div><!--End wrapper-->
+
+
+
+{% endblock %}

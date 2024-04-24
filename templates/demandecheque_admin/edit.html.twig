@@ -1,0 +1,80 @@
+{% extends 'Adminbase.html.twig' %}
+
+{% block title %}New Demandecheque{% endblock %}
+
+{% block body %}
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">Demande de chèque</div>
+                            <hr>
+                            {{ form_start(form,{ 'attr': {'novalidate': 'novalidate'} }) }}
+                            <div style="color: red">
+                                {{ form_errors(form.numerocompte,{ 'attr': {'class': 'text-danger'} }) }}
+                                {{ form_errors(form.num_telephone,{ 'attr': {'class': 'text-danger'} }) }}
+                                {{ form_errors(form.cin,{ 'attr': {'class': 'text-danger'} }) }}
+                                {{ form_errors(form.montant_demande,{ 'attr': {'class': 'text-danger'} }) }}
+                            </div>
+                            <div class="form-group">
+
+                                <label for="input-1">Numero de compte</label>
+                                {{ form_widget(form.numerocompte, {'attr': {'class': 'form-control','type':'text','placeholder':'numero de compte'}}) }}
+
+                            </div>
+                            <div class="form-group">
+                                <label for="input-2">Montant demandé</label>
+                                {{ form_widget(form.montant_demande, {'attr': {'class': 'form-control','type':'number','placeholder':'Entrer le montant'}}) }}
+
+                            </div>
+                            <div class="form-group">
+                                <label for="input-3">Numero de téléphone</label>
+
+                                {{ form_widget(form.num_telephone, {'attr': {'class': 'form-control','type':'text','placeholder':'numero telephone'}}) }}
+
+                            </div>
+                            <div class="form-group">
+                                <label for="input-4">Numero Cin</label>
+                                {{ form_widget(form.cin, {'attr': {'class': 'form-control','type':'number','placeholder':'numero cin'}}) }}
+
+                            </div>
+                            <div class="form-group">
+                                <label for="input-5">Type de chèque</label>
+                                {{ form_widget(form.type_cheque, {'attr': {'class': 'form-control form-control-input'}}) }}
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-5">Raison</label>
+                                {{ form_widget(form.raison, {'attr': {'class': 'form-control','type':'number','placeholder':'Entrer le raison','rows':'6'}}) }}
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Ajouter</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+
+            </div><!--End Row-->
+            <!--start overlay-->
+            <div class="overlay toggle-menu"></div>
+            <!--end overlay-->
+
+        </div>
+        <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+
+
+
+
+
+{% endblock %}

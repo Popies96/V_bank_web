@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Demandecheque{% endblock %}
+
+{% block body %}
+
+    <section class="contact d-flex align-items-center py-5" id="contact">
+        {{ form_start(form,{ 'attr': {'novalidate': 'novalidate'} }) }}
+        <div style="color: red">
+            {{ form_errors(form.numerocompte,{ 'attr': {'class': 'text-danger'} }) }}
+            {{ form_errors(form.num_telephone,{ 'attr': {'class': 'text-danger'} }) }}
+            {{ form_errors(form.cin,{ 'attr': {'class': 'text-danger'} }) }}
+            {{ form_errors(form.montant_demande,{ 'attr': {'class': 'text-danger'} }) }}
+        </div>
+        <div class="container-fluid text-light">
+            <div class="row">
+                <div class="col-lg-6 d-flex justify-content-center justify-content-lg-end align-items-center px-lg-5 aos-init aos-animate" data-aos="fade-right">
+                    <div style="width:90%">
+                        <div class="text-center text-lg-start py-4 pt-lg-0">
+                            <p>CONTACT</p>
+                            <h2 class="py-2">Modifier une demande de chéquier</h2>
+                            <p class="para-light">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos dicta mollitia totam explicabo obcaecati quia laudantium repudiandae.</p>
+                        </div>
+                        <div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group py-2">
+
+                                        {{ form_widget(form.numerocompte, {'attr': {'class': 'form-control-input','type':'text','placeholder':'numero de compte'}}) }}
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group py-2">
+                                        {{ form_widget(form.montant_demande, {'attr': {'class': 'form-control-input','type':'number','placeholder':'Entrer le montant'}}) }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group py-2">
+
+                                        {{ form_widget(form.num_telephone, {'attr': {'class': 'form-control-input','type':'text','placeholder':'numero telephone'}}) }}
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group py-2">
+                                        {{ form_widget(form.cin, {'attr': {'class': 'form-control-input','type':'number','placeholder':'numero cin'}}) }}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group py-1">
+                                {{ form_widget(form.type_cheque, {'attr': {'class': 'form-control form-control-input'}}) }}
+
+                            </div>
+
+                            <div class="form-group py-1">
+                                {{ form_widget(form.statut_demande, {'attr': {'class': 'form-control form-control-input'}}) }}
+
+                            </div>
+
+
+                            <div class="form-group py-2">
+                                {{ form_widget(form.raison, {'attr': {'class': 'form-control form-control-input','type':'number','placeholder':'Entrer le raison','rows':'6'}}) }}
+
+                            </div>
+                        </div>
+                        <div class="my-3">
+                            <button type="submit" style="display: none;" id="submit_button"></button>
+                            <a class="btn form-control-submit-button" href="#" id="submit_link">Submit</a>
+
+                        </div>
+                    </div> <!-- end of div -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6 d-flex align-items-center aos-init aos-animate" data-aos="fade-down">
+                    <img class="img-fluid d-none d-lg-block" src="{{ asset('Amin_toumi/assets/images/cheque.jpg') }}" alt="contact">
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+        {{ form_end(form) }}
+        <a href="{{ path('app_demandecheque_index') }}" style="background: #FFFFFF">back to list</a>
+
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('submit_link').addEventListener('click', function(event) {
+                event.preventDefault(); // Empêche le comportement par défaut du lien
+
+                // Soumet le formulaire
+                document.getElementById('submit_button').click();
+            });
+        });
+    </script>
+
+
+{% endblock %}

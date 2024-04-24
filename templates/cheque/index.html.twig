@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cheque index{% endblock %}
+{% block h1 %}
+    <h1>Liste des cheques</h1>
+{% endblock %}
+
+{% block body %}
+<section style="background-color:#1c262f">
+    <div style="background-color:#1c262f;margin-bottom: 250px ">
+
+
+    <table class="table" style="background-color: #1c262f">
+        <thead>
+        <tr>
+            <th scope="col" style="color: #FFFFFF">numero_de_cheque</th>
+            <th scope="col" style="color: #FFFFFF">montant</th>
+            <th scope="col" style="color: #FFFFFF">beneficiaire</th>
+            <th scope="col" style="color: #FFFFFF">date_emission</th>
+            <th scope="col" style="color: #FFFFFF">emetteur</th>
+            <th scope="col" style="color: #FFFFFF">Statut</th>
+            <th scope="col" style="color: #FFFFFF">Numero de compte</th>
+
+            <th scope="col" style="color: #FFFFFF">Actions</th>
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for cheque in cheques %}
+            <tr>
+                <td style="color: #FFFFFF">{{ cheque.numeroDeCheque }}</td>
+                <td style="color: #FFFFFF">{{ cheque.montant }}</td>
+                <td style="color: #FFFFFF">{{ cheque.beneficiaire }}</td>
+                <td style="color: #FFFFFF">{{ cheque.dateEmission|date('d/m/Y') }}</td>
+                <td style="color: #FFFFFF">{{ cheque.emetteur }}</td>
+                <td style="color: #FFFFFF">{{ cheque.statut }}</td>
+                <td style="color: #FFFFFF">{{ cheque.numerocompte.numerocompte }}</td>
+
+                <td style="color: #FFFFFF">
+                    <a href="{{ path('app_cheque_show', {'numero_de_cheque': cheque.numerodecheque}) }}">show</a>
+                    <a href="{{ path('app_cheque_edit', {'numero_de_cheque': cheque.numerodecheque}) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a class="btn form-control-submit-button" href="{{ path('app_cheque_new') }}" >Ajouter</a>
+
+</div>
+</section>
+{% endblock %}
