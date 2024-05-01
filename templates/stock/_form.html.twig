@@ -1,0 +1,49 @@
+<style>
+    .button-container {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .button-container a {
+        color: black;
+    }
+    .button-container a:hover {
+        color: var(--secondary);
+    }
+    </style>
+<div class="container my-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+
+{{ form_start(form, {'attr': {'class': 'my-form'}}) }}
+<div class="form-group">
+    {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'control-label'}}) }}
+    {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.nom) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.prix, 'Prix', {'label_attr': {'class': 'control-label'}}) }}
+    {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.prix) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.quantite, 'Quantité', {'label_attr': {'class': 'control-label'}}) }}
+    {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.quantite) }}
+</div>
+                    <div class="button-container">
+
+
+<button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                    <a class="btn btn-tertiary mx-3" href="{{ path('app_stock_index') }}">back to list</a>
+                    </div>
+{{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

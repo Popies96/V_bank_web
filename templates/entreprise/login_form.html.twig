@@ -1,0 +1,233 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        /* ===== Buttons Css ===== */
+        .signin-one .rounded-buttons .primary-btn {
+            background: var(--primary);
+            color: white;
+            box-shadow: lightgray;
+        }
+        .signin-one .rounded-buttons .active.primary-btn,
+        .signin-one .rounded-buttons .primary-btn:hover,
+        .signin-one .rounded-buttons .primary-btn:focus {
+            background: rgb(128, 128, 128);
+            color: white;
+            box-shadow: lightgray;
+        }
+        .signin-one .rounded-buttons .deactive.primary-btn {
+            background: rgb(128, 128, 128);
+            color: darkgray;
+            pointer-events: none;
+        }
+
+        .signin-one .rounded-buttons .primary-btn-outline {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .signin-one .rounded-buttons .active.primary-btn-outline,
+        .signin-one .rounded-buttons .primary-btn-outline:hover,
+        .signin-one .rounded-buttons .primary-btn-outline:focus {
+            background: darkgray;
+            color:white;
+        }
+        .signin-one .rounded-buttons .deactive.primary-btn-outline {
+            color: darkgray;
+            border-color: rgb(128, 128, 128);
+            pointer-events: none;
+        }
+
+        /*===========================
+          SIGN IN SIGN UP css
+        ===========================*/
+        .signin-one {
+            padding-top: 100px;
+            padding-bottom: 100px;
+            background-color: var(--primary-light);
+        }
+        .signin-one .form-input {
+            margin-top: 16px;
+        }
+        .signin-one .form-input .main-btn {
+            width: 100%;
+        }
+        .signin-one .form-input .text {
+            font-size: 16px;
+            line-height: 24px;
+            color: darkgray;
+        }
+        .signin-one .form-input .text a {
+            color: var(--primary);
+        }
+        .signin-one .signin-form {
+            background-color: white;
+            padding: 40px;
+            border: 1px solid rgb(128, 128, 128);
+            border-radius: 8px;
+        }
+        .signin-one .rounded-buttons {
+            margin-top: 20px;
+        }
+        .signin-one .rounded-buttons .primary-btn {
+            width: 100%;
+        }
+        .signin-one .rounded-buttons .primary-btn-outline {
+            width: 100%;
+        }
+        .signin-one .form-input .help-block {
+            margin-top: 2px;
+        }
+        .signin-one .form-input .help-block .list-unstyled li {
+            font-size: 12px;
+            line-height: 16px;
+            color: red;
+        }
+        .signin-one .form-input label {
+            font-size: 12px;
+            line-height: 18px;
+            color: black;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+        .signin-one .form-input .input-items {
+            position: relative;
+        }
+        .signin-one .form-input .input-items input,
+        .signin-one .form-input .input-items textarea {
+            width: 100%;
+            height: 44px;
+            border: 2px solid;
+            padding-left: 44px;
+            padding-right: 12px;
+            position: relative;
+            font-size: 16px;
+        }
+        .signin-one .form-input .input-items textarea {
+            padding-top: 8px;
+            height: 130px;
+            resize: none;
+        }
+        .signin-one .form-input .input-items i {
+            position: absolute;
+            top: 11px;
+            left: 13px;
+            font-size: 20px;
+            z-index: 9;
+        }
+        .signin-one .form-input .input-items.default input,
+        .signin-one .form-input .input-items.default textarea {
+            border-color: darkgray;
+            color: darkgray;
+        }
+        .signin-one .form-input .input-items.default input:focus,
+        .signin-one .form-input .input-items.default textarea:focus {
+            border-color: var(--primary);
+        }
+        .signin-one .form-input .input-items.default input::placeholder,
+        .signin-one .form-input .input-items.default textarea::placeholder {
+            color: darkgray;
+            opacity: 1;
+        }
+        .signin-one .form-input .input-items.default i {
+            color: darkgray;
+        }
+        .signin-one .form-input .input-items.error input,
+        .signin-one .form-input .input-items.error textarea {
+            border-color: red;
+            color: red;
+        }
+        .signin-one .form-input .input-items.error input::placeholder,
+        .signin-one .form-input .input-items.error textarea::placeholder {
+            color: red;
+            opacity: 1;
+        }
+        .signin-one .form-input .input-items.error i {
+            color: red;
+        }
+        .signin-one .form-style-two .form-input .input-items input,
+        .signin-one .form-style-two .form-input .input-items textarea {
+            border-radius: 5px;
+            padding-left: 12px;
+            padding-right: 44px;
+        }
+        .signin-one .form-style-two .form-input .input-items i {
+            left: auto;
+            right: 13px;
+        }
+
+        .signin-content .signin-title {
+            font-size: 24px;
+            line-height: 30px;
+            color: black;
+        }
+        .signin-content .text {
+            font-size: 16px;
+            line-height: 24px;
+            color: darkgray;
+            margin-top: 8px;
+        }
+
+    </style>
+    <!--====== SIGNIN ONE PART START ======-->
+    <section class="signin-area signin-one">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    {{ form_start(form, {'attr': {'class': 'signin-form form-style-two rounded-buttons'}}) }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-input">
+                                <label>Your account will be under this email</label>
+                                <div class="input-items default">
+                                    {{ form_row(form.adresseMail, {'attr': {'placeholder': 'Email'}}) }}
+                                    <i class="lni lni-envelope"></i>
+                                </div>
+                            </div>
+                            <!-- form input -->
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-input">
+                                <label>Password for your account</label>
+                                <div class="input-items default">
+                                    {{ form_row(form.motDePasse, {'attr': {'placeholder': 'Password'}}) }}
+                                    <i class="lni lni-key"></i>
+                                </div>
+                            </div>
+                            <!-- form input -->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-input rounded-buttons">
+                                {{ form_row(form.login, {'label': 'Sign In!', 'attr': {'class': 'btn primary-btn rounded-full'}}) }}
+                            </div>
+                            <!-- form input -->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-input rounded-buttons">
+                                <button class="btn primary-btn-outline rounded-full" type="button" id="cancelButton">
+                                    Cancel
+                                </button>
+                            </div>
+                            <!-- form input -->
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-input text-center">
+                                <p class="text">
+                                    By signing in you agree with the
+                                    <a href="javascript:void(0)">Terms and Conditions</a>
+                                    and
+                                    <a href="javascript:void(0)">Privacy</a>
+                                </p>
+                            </div>
+                            <!-- form input -->
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                    <!-- signin form -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </section>
+    <!--====== SIGNIN ONE PART ENDS ======-->
+
+{% endblock %}

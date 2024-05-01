@@ -1,0 +1,37 @@
+<h1 class="card-header text-center">Purchase stock</h1>
+<div class="container my-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    <div class="form-fields">
+                        {{ form_row(form.userId, {'attr': {'class': 'form-control mb-3', 'placeholder': 'User ID'}}) }}
+                        <h4>Quantity available :{{ marche.stock.quantite }}</h4>
+                        <h4 class="my-3">Unit price (dt):{{ marche.stock.prix }}</h4>
+                        {{ form_row(form.quantite, {'attr': {'class': 'form-range mb-3', 'min': 0, 'max':quantity , 'step': 1, 'onchange': 'updateTotalPrice()' }}) }}
+
+                        <h4 id="totalPrice"></h4>
+                    </div>
+                    <div class="text-center button-container">
+                        <button type="submit" class="btn btn-primary btn-block">{{ button_label|default('Save') }}</button>
+                        <a href="{{ path('app_marche_index') }}" class="btn btn-secondary btn-block mx-3">Back to List</a>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function updateTotalPrice() {
+        var quantity = document.getElementById('marche_quantite').value; // Get the selected quantity
+        var pricePerUnit = {{ marche.stock.prix }}; // Get the price per unit from the stock (replace with appropriate variable)
+
+        var totalPrice = quantity * pricePerUnit; // Calculate the total price
+
+        // Update the total price element
+        document.getElementById('totalPrice').innerText = 'Total Price: ' + totalPrice;
+    }
+</script>
+

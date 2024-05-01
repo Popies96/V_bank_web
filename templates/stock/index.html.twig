@@ -1,0 +1,204 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Stock index{% endblock %}
+{% block nav %}
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation">
+        <div class="container">
+
+            <!-- Image Logo -->
+            <!-- <a class="navbar-brand logo-image" href="index.html"><img src="images/logo.svg" alt="alternative"></a> -->
+
+            <!-- Text Logo - Use this if you don't have a graphic logo -->
+            <a class="navbar-brand logo-text" href="{{ asset('frontend/index.html') }}">VBANK</a>
+
+            <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" >
+                <ul class="navbar-nav ms-auto navbar-nav-scroll">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#header">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#plans">Plans</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false" href="#">Drop</a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" href="article.html">Article Details</a></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><a class="dropdown-item" href="terms.html">Terms Conditions</a></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><a class="dropdown-item" href="privacy.html">Privacy Policy</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light mx-2" href="{{ path("entreprise_login") }}">Log out</a>
+                    </li>
+                    <li class="nav-item">
+                       <img src="{{ asset('frontend/assets/images/about.jpg') }}" class="user-image">
+                    </li>
+                </ul>
+            </div> <!-- end of navbar-collapse -->
+        </div> <!-- end of container -->
+    </nav>
+{% endblock %}
+
+{% block body %}
+    <style>
+        .user-image{
+            margin-left: 10px;
+            border-radius: 25px;
+            width:50px;
+            height: 50px;
+        }
+        .stocks{
+            background-color: var(--primary-light);
+            padding-top: 15vh;
+        }
+        .stocks h1{
+            color:white;
+
+        }
+        .single-card {
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 30px;
+            -webkit-transition: all 0.3s ease-out 0s;
+            -moz-transition: all 0.3s ease-out 0s;
+            -ms-transition: all 0.3s ease-out 0s;
+            -o-transition: all 0.3s ease-out 0s;
+            transition: all 0.3s ease-out 0s;
+        }
+        .single-card:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .single-card .card-image img {
+            width: 100%;
+            height: auto; /* Adjust height as needed */
+        }
+        .single-card .card-content {
+            padding: 16px;
+        }
+        .single-card .card-content .card-title {
+            margin-bottom: 0;
+        }
+        .single-card .card-content .card-title a {
+            color: black;
+            -webkit-transition: all 0.3s ease-out 0s;
+            -moz-transition: all 0.3s ease-out 0s;
+            -ms-transition: all 0.3s ease-out 0s;
+            -o-transition: all 0.3s ease-out 0s;
+            transition: all 0.3s ease-out 0s;
+        }
+        .single-card .card-content .card-title a:hover {
+            color: #007bff; /* Adjust color as needed */
+        }
+        .single-card .card-content .text {
+            color: black;
+            margin-top: 8px;
+        }
+        .caution-btn {
+            background: blue;
+            color: white;
+            box-shadow:  0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 85px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .button-container a {
+            color: black;
+        }
+        .button-container a:hover {
+            color: var(--secondary);
+        }
+
+    </style>
+
+    <div class="stocks">
+        <h1 class="text-center "> Stocks </h1>
+        <div>
+        <a  class="btn caution-btn my-4" data-toggle="tooltip" data-placement="right" title="Create new Stock" href="{{ path('app_stock_new') }}">Create new</a>
+            <input type="text" id="searchInput" placeholder="Search...">
+        </div>
+
+    <section class="card-area pb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                {% for stock in stocks %}
+                    <div class="col-lg-4 col-md-7 col-sm-9">
+                        <div class="single-card card-style-one">
+                            <div class="card-image">
+                                <img src="https://cdn.ayroui.com/1.0/images/card/card-1.jpg" alt="Image" />
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">
+                                    <a href="javascript:void(0)">Nom: {{ stock.nom }}</a>
+                                </h4>
+                                <p class="text">
+                                    Id: {{ stock.id }}, Nom: {{ stock.nom }}, Prix: {{ stock.prix }}, Quantite: {{ stock.quantite }}, Date: {{ stock.date ? stock.date|date('Y-m-d H:i:s') : '' }}
+                                </p>
+                            </div>
+                            <div class="button-container">
+                                <a class="btn btn-tertiary" href="{{ path('app_stock_show', {'id': stock.id}) }}">show</a>
+                                <a class="btn btn-tertiary mx-3 my-4" href="{{ path('app_stock_edit', {'id': stock.id}) }}">edit</a>
+                                {{ include('stock/_delete_form.html.twig') }}
+                            </div>
+                        </div>
+                        <!-- single-card -->
+                    </div>
+                    <!-- col -->
+                {% endfor %}
+            </div>
+            <!-- row -->
+            {% if stocks|length == 0 %}
+                <div class="col-12 text-center">
+                    <h1>No records found</h1>
+                </div>
+            {% endif %}
+        </div>
+        <!-- container -->
+    </section>
+    </div>
+<script>
+    document.getElementById('searchInput').addEventListener('input', function() {
+        var searchValue = this.value.trim(); // Get the trimmed search value
+        if (searchValue.length > 0) {
+            // Make an AJAX request to fetch filtered data
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '{{ path('search_stocks') }}?search=' + encodeURIComponent(searchValue), true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Update the card area with the filtered data
+                    document.querySelector('.card-area').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        } else {
+            // If search value is empty, reload all cards
+            location.reload();
+        }
+    });
+</script>
+
+{% endblock %}
+{% block footer %}
+
+{% endblock %}

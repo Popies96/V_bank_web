@@ -1,0 +1,37 @@
+<section class="card-area pb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for stock in stocks %}
+                <div class="col-lg-4 col-md-7 col-sm-9">
+                    <div class="single-card card-style-one">
+                        <div class="card-image">
+                            <img src="https://cdn.ayroui.com/1.0/images/card/card-1.jpg" alt="Image" />
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">
+                                <a href="javascript:void(0)">Nom: {{ stock.nom }}</a>
+                            </h4>
+                            <p class="text">
+                                Id: {{ stock.id }}, Nom: {{ stock.nom }}, Prix: {{ stock.prix }}, Quantite: {{ stock.quantite }}, Date: {{ stock.date ? stock.date|date('Y-m-d H:i:s') : '' }}
+                            </p>
+                        </div>
+                        <div class="button-container">
+                            <a class="btn btn-tertiary" href="{{ path('app_stock_show', {'id': stock.id}) }}">show</a>
+                            <a class="btn btn-tertiary mx-3 my-4" href="{{ path('app_stock_edit', {'id': stock.id}) }}">edit</a>
+                            {{ include('stock/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                    <!-- single-card -->
+                </div>
+                <!-- col -->
+            {% endfor %}
+        </div>
+        <!-- row -->
+        {% if stocks|length == 0 %}
+            <div class="col-12 text-center">
+                <h1>No records found</h1>
+            </div>
+        {% endif %}
+    </div>
+    <!-- container -->
+</section>

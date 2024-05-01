@@ -1,0 +1,56 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Entreprise index{% endblock %}
+
+{% block body %}
+    <style>
+        .table-container {
+            overflow: auto;
+            max-height: 100%; /* Optional: Set a maximum height for the container */
+        }
+    </style>
+    <h1>Entreprise index</h1>
+<div class="table-container">
+    <table class="table mx-5">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Industrie</th>
+                <th>Type</th>
+                <th>Solde</th>
+                <th>Adresse</th>
+                <th>Tel</th>
+                <th>Pays</th>
+                <th>AdresseMail</th>
+                <th>MotDePasse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entreprise in entreprises %}
+            <tr>
+                <td>{{ entreprise.id }}</td>
+                <td>{{ entreprise.nom }}</td>
+                <td>{{ entreprise.industrie }}</td>
+                <td>{{ entreprise.type }}</td>
+                <td>{{ entreprise.solde }}</td>
+                <td>{{ entreprise.adresse }}</td>
+                <td>{{ entreprise.tel }}</td>
+                <td>{{ entreprise.pays }}</td>
+                <td>{{ entreprise.adresseMail }}</td>
+                <td>{{ entreprise.motDePasse }}</td>
+                <td>
+                    <a class="btn btn-tertiary"href="{{ path('app_entreprise_show', {'id': entreprise.id}) }}">show</a>
+                    <a class="btn btn-tertiary" href="{{ path('app_entreprise_edit', {'id': entreprise.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
