@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<style>
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<section class="home py-5 d-flex align-items-center" id="header">
+    <div class="container text-light py-5"  data-aos="fade-right">
+        <h1 class="headline">Your Best <span class="home_text">Solution</span><br>For your financial problems</h1>
+        <p class="para para-light py-3">Bienvenue chez Virtual Bank,
+            votre destination de confiance pour une gestion bancaire
+            en ligne sûre et efficace. Avec notre plateforme intuitive
+            et sécurisée, gérez vos finances en toute simplicité,
+            que ce soit pour consulter vos comptes, effectuer des virements
+            ou investir intelligemment. Notre engagement envers la sécurité
+            de vos informations financières est notre priorité absolue,
+            vous offrant ainsi une tranquillité d'esprit totale.
+            Rejoignez-nous dès aujourd'hui et découvrez l'avenir de la banque
+            en ligne avec Virtual Bank.</p>
+        <div class="my-3">
+            <a class="btn" href="user/new">Sign Up</a> <span style="margin-left: 10px; margin-right: 10px;"></span> <a class="btn" href="login">login</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

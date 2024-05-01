@@ -1,0 +1,19 @@
+.glass-container {
+    background-color: rgba(255, 255, 255, 0.5); /* Adjust opacity as needed */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.glass-container input[type="text"],
+.glass-container input[type="number"],
+.glass-container input[type="email"],
+.glass-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: purple;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust opacity as needed */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center text horizontally */
+}

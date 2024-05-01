@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Virtual Bank{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Ahla w Sahla bel m3allem</h1>
+    {# Retrieve the user ID from the session #}
+    {% set userId = app.session.get('user_id') %}
+
+    {# Check if the user ID is not null #}
+    {% if userId is not null %}
+        {# Generate the edit URL using the user ID #}
+        <a class="btn" href="{{ path('app_user_edit', {'userId': userId}) }}">Edit</a>
+        <span style="margin-left: 10px; margin-right: 10px;"></span>
+        <a class="btn" href="{{ path('app_logout') }}">Log out</a>
+    {% else %}
+        {# Handle the case where the user ID is not available #}
+        <span>User ID not available</span>
+    {% endif %}
+</div>
+{% endblock %}
