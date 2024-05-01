@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Entity\Stock;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Endroid\QrCode\Color\Color;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 
 /**
  * @extends ServiceEntityRepository<Stock>
@@ -52,5 +55,29 @@ class StockRepository extends ServiceEntityRepository
             ->setParameter('entrepriseId', $entrepriseId)
             ->getQuery()
             ->getResult();
+    }
+
+    public function QRcode($name, $price, $quantity)
+    {
+        $text = sprintf(
+            "Stock Name: %s\nPrice: %s\nQuantity: %s",
+            $name,
+            $price,
+            $quantity,
+
+        );
+        $qr_code = QrCode::create($text)
+            ->setSize(130)
+            ->setMargin(0)
+            ->setForegroundColor(new Color(14, 233, 81))
+            ->setBackgroundColor(new Color(236, 233, 230));
+
+        $writer = new PngWriter;
+
+        $result = $writer->write($qr_code);
+
+        header("Content-Type: image/png");
+        $imageData = base64_encode($result->getString());
+        return 'data:image/png;base64,' . $imageData;
     }
 }

@@ -11,12 +11,25 @@
         var alanBtnInstance = alanBtn({
             key: "c06b1584a3a750524ec4c01301330d6d2e956eca572e1d8b807a3e2338fdd0dc/stage",
             onCommand: function (commandData) {
-                if (commandData.command === "go:back") {
-
+                if (commandData.command === "openURL" && url === "#trading") {
+                    scrollToSection("trading");
+                }
+                if (commandData.command === "openURL") {
+                    scrollToSection("market");
+                }
+                if (commandData.command === "openURL") {
+                    scrollToSection("portfolio");
                 }
             },
             rootEl: document.getElementById("alan-btn"),
+
         });
+        function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            if (section) {
+                // Scroll to the section smoothly
+                section.scrollIntoView({ behavior: 'smooth' });
+            }}
     </script>
     <style>
 
@@ -103,7 +116,7 @@
 
     </style>
 
-    <section class="trading pt-5">
+    <section id="trading" class="trading pt-5">
 <div class=" mt-5"></div>
     <!-- TradingView Widget BEGIN -->
     <div id="tradingview_33f92" class="tradingview-widget-container"></div>
@@ -141,7 +154,7 @@
         );
     </script>
     </section>
-<h1 class="text-center">Our Market</h1>
+<h1 id="market" class="text-center ">Our Market</h1>
     <section class="content-section my-3">
         <div class="left-content px-4">
 
@@ -217,7 +230,7 @@
         </div>
         <!-- right-content -->
     </section>
-<section class="my-5 px-4">
+<section id="portfolio" class="my-5 px-4">
     <h1 class="text-center my-3">Portfolio</h1>
 
     <table class="table text-center">

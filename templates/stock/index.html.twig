@@ -129,14 +129,58 @@
         .button-container a:hover {
             color: var(--secondary);
         }
+        .stock-info {
+            display: flex;
+            align-items: center; /* Vertically align items */
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+            margin-left: 20px;
+            max-width: 350px; /* Adjust width as needed */
+        }
+
+        .search-bar input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
 
     </style>
 
     <div class="stocks">
         <h1 class="text-center "> Stocks </h1>
-        <div>
-        <a  class="btn caution-btn my-4" data-toggle="tooltip" data-placement="right" title="Create new Stock" href="{{ path('app_stock_new') }}">Create new</a>
-            <input type="text" id="searchInput" placeholder="Search...">
+        <div class="search-container">
+            <a class="btn caution-btn my-4" data-toggle="tooltip" data-placement="right" title="Create new Stock" href="{{ path('app_stock_new') }}">Create new</a>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button type="button"><i class="fas fa-search"></i></button>
+            </div>
         </div>
 
     <section class="card-area pb-5">
@@ -152,9 +196,18 @@
                                 <h4 class="card-title">
                                     <a href="javascript:void(0)">Nom: {{ stock.nom }}</a>
                                 </h4>
+                                <div class="stock-info">
+                                    <div class="text-container mr-3">
                                 <p class="text">
-                                    Id: {{ stock.id }}, Nom: {{ stock.nom }}, Prix: {{ stock.prix }}, Quantite: {{ stock.quantite }}, Date: {{ stock.date ? stock.date|date('Y-m-d H:i:s') : '' }}
+                                    Price: {{ stock.prix }}
                                 </p>
+                                <p class="text">
+                                    Quantite: {{ stock.quantite }}</p>
+                                <p class="text">
+                                    Date: {{ stock.date ? stock.date|date('Y-m-d H:i:s') : '' }}</p>
+                                    </div>
+                                <img class="ml-2" src="{{ qrcode.QRcode(stock.nom,stock.prix,stock.quantite) }}" alt="QR Code">
+                                </div>
                             </div>
                             <div class="button-container">
                                 <a class="btn btn-tertiary" href="{{ path('app_stock_show', {'id': stock.id}) }}">show</a>

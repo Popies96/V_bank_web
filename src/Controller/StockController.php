@@ -7,6 +7,9 @@ use App\Entity\Stock;
 use App\Form\StockType;
 use App\Repository\StockRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Endroid\QrCode\Color\Color;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,10 +28,14 @@ class StockController extends AbstractController
         $stocks = $stockRepository->findByEntreprise($entrepriseId);
 
 
+
         return $this->render('stock/index.html.twig', [
             'stocks' => $stocks,
+            'qrcode'=>$stockRepository
+
         ]);
     }
+
     #[Route('/search-stocks', name: 'search_stocks', methods: ['GET'])]
     public function searchStocks(Request $request): Response
     {
