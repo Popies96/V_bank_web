@@ -1,0 +1,70 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %} index{% endblock %}
+   {% block css %}
+       <!-- loader-->
+       <link href="{{ asset('back/assets/css/pace.min.css') }}" rel="stylesheet"/>
+       <script src="{{ asset('back/assets/js/pace.min.js') }}"></script>
+       <!--favicon-->
+       <link rel="icon" href="{{ asset('back/assets/images/favicon.ico') }}" type="image/x-icon">
+       <!-- Vector CSS -->
+       <link href="{{ asset('back/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet"/>
+       <!-- simplebar CSS-->
+       <link href="{{ asset('back/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet"/>
+       <!-- Bootstrap core CSS-->
+       <link href="{{ asset('back/assets/css/bootstrap.min.css') }}" rel="stylesheet"/>
+       <!-- animate CSS-->
+       <link href="{{ asset('back/assets/css/animate.css') }}" rel="stylesheet" type="text/css"/>
+       <!-- Icons CSS-->
+       <link href="{{ asset('back/assets/css/icons.css') }}" rel="stylesheet" type="text/css"/>
+       <!-- Sidebar CSS-->
+       <link href="{{ asset('back/assets/css/sidebar-menu.css') }}" rel="stylesheet"/>
+       <!-- Custom Style-->
+       <link href="{{ asset('back/assets/css/app-style.css') }}" rel="stylesheet"/>
+
+   {% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            background-image: url('{{ asset('back/assets/images/bg-themes/1.png') }}');
+            /* Other background properties */
+            background-size: cover; /* Adjust as needed */
+            background-repeat: no-repeat; /* Adjust as needed */
+        }
+    </style>
+    <h1>Credit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Montant</th>
+                <th>Date</th>
+                <th>Historique</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for credit in credits %}
+            <tr>
+                <td>{{ credit.status }}</td>
+                <td>{{ credit.montant }}</td>
+                <td>{{ credit.date ? credit.date|date('Y-m-d') : '' }}</td>
+                <td>{{ credit.historique }}</td>
+                <td>
+                    <a href="{{ path('app_credit_show', {'idDemande': credit.idDemande}) }}">show</a>
+                    <a href="{{ path('app_credit_edit', {'idDemande': credit.idDemande}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_credit_new') }}">Create new</a>
+
+{% endblock %}

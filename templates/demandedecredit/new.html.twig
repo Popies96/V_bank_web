@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Demande{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            background-image: url('{{ asset('front/assets/images/home.jpg') }}');
+            /* Other background properties */
+            background-size: cover; /* Adjust as needed */
+            background-repeat: no-repeat; /* Adjust as needed */
+        }
+
+        .form-container {
+            margin-top: 25px; /* Adjust the value as needed */
+        }
+
+        h1 {
+            margin-top: 95px; /* Adjust the value as needed */
+        }
+    </style>
+
+    <div class="container">
+        <h1>Nouveau Demande</h1>
+
+        <div class="form-container">
+            {{ include('demandedecredit/_form.html.twig') }}
+        </div>
+
+            <a href="{{ path('app_demandedecredit_index') }}">back to list</a>
+    </div>
+
+{% endblock %}

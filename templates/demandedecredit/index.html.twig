@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block title %}Demande{% endblock %}
+
+{% block body %}
+    <style>
+    body {
+    background-image: url('{{ asset('front/assets/images/home.jpg') }}');
+    /* Other background properties */
+    background-size: cover; /* Adjust as needed */
+    background-repeat: no-repeat; /* Adjust as needed */
+    }
+    </style>
+        <div class="container" style="margin-top: 100px;">
+            <table class="table" style="width: 110%;">
+                <thead>
+                <tr>
+                    <th>Cin</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Phone</th>
+                    <th>Typedecredit</th>
+                    <th>Etatcivil</th>
+                    <th>Bulletin</th>
+                    <th>Sommedecredit</th>
+                    <th>Echeance</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for demandedecredit in demandedecredits %}
+                    <tr>
+                        <td>{{ demandedecredit.cin }}</td>
+                        <td>{{ demandedecredit.nom }}</td>
+                        <td>{{ demandedecredit.prenom }}</td>
+                        <td>{{ demandedecredit.phone }}</td>
+                        <td>{{ demandedecredit.typedecredit }}</td>
+                        <td>{{ demandedecredit.etatcivil }}</td>
+                        <td>{{ demandedecredit.bulletin }}</td>
+                        <td>{{ demandedecredit.sommedecredit }}</td>
+                        <td>{{ demandedecredit.echeance }}</td>
+                        <td>
+                            <a href="{{ path('app_demandedecredit_show', {'cin': demandedecredit.cin}) }}">show</a>
+                            <a href="{{ path('app_demandedecredit_edit', {'cin': demandedecredit.cin}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="10">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('app_demandedecredit_simulate') }}">Create new</a>
+        </div>
+    </div>
+{% endblock %}

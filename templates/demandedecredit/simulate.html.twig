@@ -1,0 +1,91 @@
+{# templates/adddc.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        body {
+            background-image: url('{{ asset('front/assets/images/home.jpg') }}');
+            /* Other background properties */
+            background-size: cover; /* Adjust as needed */
+            background-repeat: no-repeat; /* Adjust as needed */
+        }
+
+        .form-container {
+            margin-top: 80px; /* Adjust the value as needed */
+            background-color: rgba(255, 255, 255, 0.8); /* Glass-like color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+            margin-bottom: 50px; /* Adjust the value as needed */
+        }
+
+        h1 {
+            margin-top: 50px; /* Adjust the value as needed */
+        }
+
+        #resultLabel {
+            margin-top: 20px; /* Adjust the value as needed */
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .month-label {
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+
+    <div class="form-container">
+        <h1>Simulation de votre Demande</h1>
+        <label for="sommec">Somme</label>
+        <input type="text" id="sommec" name="sommec" class="form-control">
+
+        <label for="salaiare">Votre Salaire</label>
+        <input type="text" id="salaiare" name="salaiare" class="form-control">
+
+        <div style="margin-top: 10px;">
+            <label for="echeance">Échéance</label>
+            <input type="text" id="echeance" name="echeance" class="form-control">
+        </div>
+
+        <button onclick="vc()">Submit</button>
+
+        <div id="resultLabel"></div>
+        <div class="button-container">
+            <a id="creditButton" href="{{ path('app_demandedecredit_new') }}" class="btn btn-primary">Demander un Crédit</a>
+        </div>
+    </div>
+
+    <script>
+        function vc() {
+            var sommec = parseInt(document.getElementById('sommec').value);
+            var salaiare = parseInt(document.getElementById('salaiare').value);
+            var echeance = parseInt(document.getElementById('echeance').value);
+            var interet = (sommec * 8) / 100;
+            var s = sommec + interet;
+            var x = (salaiare * 40) / 100;
+            var tot = s / echeance;
+
+            if (tot <= x) {
+                document.getElementById('resultLabel').innerHTML = "<strong>You pay $" + tot.toFixed(2) + " for " + echeance + " months:</strong>";
+
+                // Show the number for each month
+                for (var i = 1; i <= echeance; i++) {
+                    var label = document.createElement('label');
+                    label.textContent = "Month " + i + ": $" + tot.toFixed(2);
+                    label.classList.add('month-label');
+                    document.getElementById('resultLabel').appendChild(label);
+                    creditButton.setAttribute('href', "{{ path('app_demandedecredit_new') }}");
+                    creditButton.classList.remove('disabled'); // Optionally, remove the disabled class
+                }
+            } else {
+                document.getElementById('resultLabel').innerHTML = "Not Eligible";
+
+                creditButton.removeAttribute('href');
+                creditButton.classList.add('disabled');
+            }
+        }
+    </script>
+{% endblock %}

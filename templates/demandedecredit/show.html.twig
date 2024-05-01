@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demandedecredit{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            background-image: url('{{ asset('front/assets/images/home.jpg') }}');
+            /* Other background properties */
+            background-size: cover; /* Adjust as needed */
+            background-repeat: no-repeat; /* Adjust as needed */
+        }
+        h1 {
+            margin-top: 95px; /* Adjust the value as needed */
+        }
+    </style>
+    <h1>Demandedecredit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Cin</th>
+                <td>{{ demandedecredit.cin }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ demandedecredit.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ demandedecredit.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ demandedecredit.phone }}</td>
+            </tr>
+            <tr>
+                <th>Typedecredit</th>
+                <td>{{ demandedecredit.typedecredit }}</td>
+            </tr>
+            <tr>
+                <th>Etatcivil</th>
+                <td>{{ demandedecredit.etatcivil }}</td>
+            </tr>
+            <tr>
+                <th>Bulletin</th>
+                <td>{{ demandedecredit.bulletin }}</td>
+            </tr>
+            <tr>
+                <th>Sommedecredit</th>
+                <td>{{ demandedecredit.sommedecredit }}</td>
+            </tr>
+            <tr>
+                <th>Echeance</th>
+                <td>{{ demandedecredit.echeance }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_demandedecredit_index') }}">back to list</a>
+
+    <a href="{{ path('app_demandedecredit_edit', {'cin': demandedecredit.cin}) }}">edit</a>
+
+    {{ include('demandedecredit/_delete_form.html.twig') }}
+{% endblock %}
