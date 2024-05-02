@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 
 #[Route('/user')]
@@ -133,7 +135,7 @@ class UserController extends AbstractController
 
 
     #[Route('/{idUser}/ban', name: 'app_user_ban', methods: ['POST'])]
-    public function banUser($idUser, EntityManagerInterface $entityManager): RedirectResponse
+    public function banUser($idUser, EntityManagerInterface $entityManager,  MailerInterface $mailer): RedirectResponse
     {
         // Fetch the user from the database based on $idUser
         $user = $entityManager->getRepository(User::class)->find($idUser);
@@ -153,6 +155,14 @@ class UserController extends AbstractController
 
         // Persist the changes
         $entityManager->flush();
+        // Send email notification to the user
+    $email = (new Email())
+    ->from('ahmedjebari022@gmail.com')
+    ->to($user->getEmail())
+    ->subject('Account Ban Notification')
+    ->text('Dear ' . $user->getNom() . ",\n\nYour account has been banned. For more information contact our support Team.\n\nYou can't enjoy any of our services until you account is unbanned\n\nSincerely,\nThe V-Bank administration Team");
+
+$mailer->send($email);
 
         return $this->redirectToRoute('app_user_index'); // Redirect to the index page
     }
