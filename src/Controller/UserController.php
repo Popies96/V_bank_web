@@ -8,11 +8,13 @@ use App\Repository\CompteRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 #[Route('/user')]
@@ -70,7 +72,7 @@ class UserController extends AbstractController
         ]);
     }
     #[Route('/{idUser}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         // Retrieve $idUser from the session
         $idUser = $this->session->get('user_id');
@@ -87,6 +89,8 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
+        $user->setPassword($hashedPassword);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_page', [], Response::HTTP_SEE_OTHER);
@@ -126,4 +130,56 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    #[Route('/{idUser}/ban', name: 'app_user_ban', methods: ['POST'])]
+    public function banUser($idUser, EntityManagerInterface $entityManager): RedirectResponse
+    {
+        // Fetch the user from the database based on $idUser
+        $user = $entityManager->getRepository(User::class)->find($idUser);
+
+        // Check if user exists
+        if (!$user) {
+            return $this->redirectToRoute('app_user_index'); // Redirect to the index page
+        }
+
+        // Check if the user is already banned
+        if ($user->getRole() === 'banned') {
+            return $this->redirectToRoute('app_user_index'); // Redirect to the index page
+        }
+
+        // Ban the user by setting the role to "banned"
+        $user->setRole('banned');
+
+        // Persist the changes
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_user_index'); // Redirect to the index page
+    }
+
+    #[Route('/{idUser}/unban', name: 'app_user_unban', methods: ['POST'])]
+    public function unbanUser($idUser, EntityManagerInterface $entityManager): RedirectResponse
+    {
+        // Fetch the user from the database based on $idUser
+        $user = $entityManager->getRepository(User::class)->find($idUser);
+
+        // Check if user exists
+        if (!$user) {
+            return $this->redirectToRoute('app_user_index'); // Redirect to the index page
+        }
+
+        // Check if the user is already unbanned
+        if ($user->getRole() !== 'banned') {
+            return $this->redirectToRoute('app_user_index'); // Redirect to the index page
+        }
+
+        // Unban the user by setting the role to a different role, assuming 'ROLE_USER'
+        $user->setRole('User'); // Change 'User' to whatever is appropriate for your system
+
+        // Persist the changes
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_user_index'); // Redirect to the index page
+    }
+
 }

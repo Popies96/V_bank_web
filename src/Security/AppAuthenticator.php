@@ -17,6 +17,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 
 /**
  * @property UserRepository $userRepository
@@ -27,6 +28,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     use TargetPathTrait;
     private $session;
     public const LOGIN_ROUTE = 'app_login';
+    private $container;
 
     public function __construct(private UrlGeneratorInterface $urlGenerator, UserRepository $userRepository, SessionInterface $session)
     {
@@ -57,20 +59,28 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     }
 
 
+    
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
+
         $user = $token->getUser();
         $this->session->set('user_id', $user->getIdUser());
+
         if ($user->getRole() === 'Admin') {
             return new RedirectResponse($this->urlGenerator->generate('app_user_index'));
         }
 
-        // Assume other users are redirected to 'app_home'
-        return new RedirectResponse($this->urlGenerator->generate('app_page'));
+        if ($user->getRole() === 'User') {
+            return new RedirectResponse($this->urlGenerator->generate('app_page'));
+        }
+        // For other cases, redirect to a default page or any appropriate route.
+        return new RedirectResponse($this->urlGenerator->generate('app_logout'));
     }
+
     public function loadUserByUsername(string $email): ?UserInterface
     {
         return $this->UserRepository->findOneByEmail($email);
