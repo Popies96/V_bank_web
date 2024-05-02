@@ -1,0 +1,38 @@
+{{ form_start(form, {'attr': {'class': 'form'}}) }}
+
+<link rel="stylesheet" href="{{ asset('Front/Reclamation/new.css') }}">
+<br>
+
+<div class="all">
+    <div class="glass-container">
+        <h2 class="title">Create new Reclamation</h2>
+        <div class="form-group">
+            <label class="form-label" for="description">Description</label>
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.description, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="status">Status</label>
+            {{ form_widget(form.status, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.status, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="category">Category</label>
+            {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.category, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="idTrans">ID Transaction</label>
+            {{ form_widget(form.idTrans, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.idTrans, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <button class="btn-submit">{{ button_label|default('Continue') }}</button>
+        <button onclick="window.location.href='{{ path('app_reclamation_index') }}'" class="btn-retour">Back</button>
+    </div>
+</div>
+
+{{ form_end(form) }}

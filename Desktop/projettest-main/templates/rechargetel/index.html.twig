@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rechargetel index{% endblock %}
+
+{% block body %}
+    <h1>Rechargetel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdRech</th>
+                <th>Operateur</th>
+                <th>Montant</th>
+                <th>Numtel</th>
+                <th>Datetemps</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rechargetel in rechargetels %}
+            <tr>
+                <td>{{ rechargetel.idRech }}</td>
+                <td>{{ rechargetel.operateur }}</td>
+                <td>{{ rechargetel.montant }}</td>
+                <td>{{ rechargetel.numtel }}</td>
+                <td>{{ rechargetel.datetemps }}</td>
+                <td>
+                    <a href="{{ path('app_rechargetel_show', {'idRech': rechargetel.idRech}) }}">show</a>
+                    <a href="{{ path('app_rechargetel_edit', {'idRech': rechargetel.idRech}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_rechargetel_new') }}">Create new</a>
+{% endblock %}

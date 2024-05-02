@@ -1,0 +1,32 @@
+{{ form_start(form, {'attr': {'class': 'form'}}) }}
+
+<link rel="stylesheet" href="{{ asset('Front/RechargeTel/new.css') }}">
+<br>
+
+<div class="all">
+    <div class="glass-container">
+        <h2 class="title">Create new RechargeTel</h2>
+        <div class="form-group">
+            <label class="form-label" for="operateur">Operateur</label>
+            {{ form_widget(form.operateur, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.operateur, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="montant">Montant</label>
+            {{ form_widget(form.montant, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.montant, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="numTel">NumTel</label>
+            {{ form_widget(form.numtel, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.numtel, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <button class="btn-submit">{{ button_label|default('Continue') }}</button>
+        <button onclick="window.location.href='{{ path('app_rechargetel_index') }}'" class="btn-retour">Back</button>
+    </div>
+</div>
+
+{{ form_end(form) }}

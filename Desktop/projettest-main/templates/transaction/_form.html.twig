@@ -1,0 +1,56 @@
+{{ form_start(form, {'attr': {'class': 'form'}}) }}
+
+<link rel="stylesheet" href="{{ asset('Front/Transaction/new.css') }}">
+<br>
+
+<div class="all">
+    <div class="glass-container">
+        <h2 class="title">Create new Transaction</h2>
+        <div class="form-group">
+            <label class="form-label" for="expediteur">Expediteur</label>
+            {{ form_widget(form.expediteur, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.expediteur, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="destinataire">Destinataire</label>
+            {{ form_widget(form.destinataire, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.destinataire, {'attr': {'style': 'color: red;'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="montant">Montant</label>
+            {{ form_widget(form.montant, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.montant, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="type">Type</label>
+            {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.type, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="localisation">Localisation</label>
+            {{ form_widget(form.localisation, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.localisation, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="etat">Etat</label>
+            {{ form_widget(form.etat, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.etat, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="description">Description</label>
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.description, {'attr': {'class': 'error-msg'}}) }}
+        </div>
+
+        <button class="btn-submit">{{ button_label|default('Continue') }}</button>
+        <button onclick="window.location.href='{{ path('app_transaction_index') }}'" class="btn-retour">Back</button>
+    </div>
+</div>
+
+{{ form_end(form) }}

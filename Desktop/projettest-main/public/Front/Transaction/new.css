@@ -1,0 +1,71 @@
+.title{
+    color: #2f2f2f;
+    text-align: center;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
+}
+
+.glass-container{
+
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    padding-right: 200px;
+    padding-left: 200px;
+    border-radius: 8px;
+}
+.form-group {
+    margin-bottom: 35px;
+}
+.form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-control {
+    width: 500px;
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.all{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50vh;
+    margin-top: 5vh;
+
+}
+.btn-submit{
+    margin-left: 10vh;
+    margin-bottom: 5vh;
+    color: white;
+    border-radius: 0;
+    border-width: 2px;
+    padding: 10px 30px;
+    border-image-slice: 1;
+    background-image: none;
+    background: transparent;
+    border-image-source: var(--gradient);
+    box-shadow: 5px 5px 0px 0px var(--secondary);
+}
+
+/* CSS for error messages */
+/* CSS for error messages */
+.error-msg {
+    color: #ff0000; /* Text color for the error message */
+}
+
+.btn-retour {
+    margin-left: 6vh;
+    margin-bottom: 5vh;
+    color: white;
+    border-radius: 0;
+    border-width: 2px;
+    padding: 10px 30px;
+    border-image-slice: 1;
+    background-image: none;
+    background: transparent;
+    border-image-source: var(--gradient);
+    box-shadow: 5px 5px 0px 0px var(--secondary);
+}
+
